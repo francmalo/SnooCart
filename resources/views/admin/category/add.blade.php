@@ -40,7 +40,8 @@
                       <div class="form-group">
                         <label >Slug<span style="color: red">*</span></label>
                         <input type="text" class="form-control" required value="{{ old('slug') }}" name="slug" placeholder="Slug Ex.URL">
-                      </div>
+                        <div style="color: red">{{ $errors->first('slug') }}</div>
+                    </div>
                       <div class="form-group">
                         <label >Status<span style="color: red">*</span></label>
                        <select class="form-control" name="status" required>

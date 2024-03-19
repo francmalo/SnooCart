@@ -12,7 +12,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-12">
-              <h1>Edit Category</h1>
+              <h1>Edit Brand</h1>
             </div>
 
           </div>
@@ -30,25 +30,25 @@
 
                   <!-- /.card-header -->
                   <!-- form start -->
-                  <form action="{{ route('category.update', $category->id) }}" method="post">
+                  <form action="{{ route('brand.update', $brand->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     {{-- <input type="hidden" name="_method" value="PUT"> --}}
                     <div class="card-body">
                       <div class="form-group">
-                        <label >Category Name<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" required value="{{ old('name',$category->name) }}" name="name" placeholder="Category Name">
+                        <label >Brand Name<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" required value="{{ old('name',$brand->name) }}" name="name" placeholder="Brand Name">
                       </div>
                       <div class="form-group">
                         <label >Slug<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" required value="{{ old('slug',$category->slug) }}" name="slug" placeholder="Slug Ex.URL">
+                        <input type="text" class="form-control" required value="{{ old('slug',$brand->slug) }}" name="slug" placeholder="Slug Ex.URL">
                         <div style="color: red">{{ $errors->first('slug') }}</div>
                     </div>
                       <div class="form-group">
                         <label >Status<span style="color: red">*</span></label>
                        <select class="form-control" name="status" required>
-                        <option value="0" {{ $category->status == 0 ? 'selected' : '' }}>Active</option>
-                        <option value="1" {{ $category->status == 1 ? 'selected' : '' }}>Inactive</option>
+                        <option value="0" {{ $brand->status == 0 ? 'selected' : '' }}>Active</option>
+                        <option value="1" {{ $brand->status == 1 ? 'selected' : '' }}>Inactive</option>
                         {{-- <option {{ (old('status',$getRecord->status)== 0) ? 'selected':'' }} value="0">Active</option>
                         <option {{ (old('status',$getRecord->status)== 1) ? 'selected':'' }}value="1">Inactive</option> --}}
                        </select>
@@ -57,16 +57,16 @@
                       <hr>
                       <div class="form-group">
                         <label >Meta Title<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" required value="{{ old('meta_title',$category->meta_title) }}" name="meta_title" placeholder="meta title">
+                        <input type="text" class="form-control" required value="{{ old('meta_title',$brand->meta_title) }}" name="meta_title" placeholder="meta title">
                       </div>
                       <div class="form-group">
                         <label>Meta Description</label>
-                        <textarea class="form-control" required name="meta_description" placeholder="meta description">{{ old('meta_description', $category->meta_description) }}</textarea>
+                        <textarea class="form-control"  name="meta_description" placeholder="meta description">{{ old('meta_description', $brand->meta_description) }}</textarea>
                     </div>
 
                       <div class="form-group">
                         <label >Meta Keywords</label>
-                        <input type="text" class="form-control" required value="{{ old('meta_keywords',$category->meta_keywords) }}" name="meta_keywords" placeholder="meta keywords">
+                        <input type="text" class="form-control"  value="{{ old('meta_keywords',$brand->meta_keywords) }}" name="meta_keywords" placeholder="meta keywords">
                       </div>
 
 

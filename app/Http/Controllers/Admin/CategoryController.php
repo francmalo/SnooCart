@@ -18,7 +18,7 @@ class CategoryController extends Controller
     }
     public function add(){
 
-        $data['header_title']='Add New Admin';
+        $data['header_title']='Add New Category';
         return view('admin.category.add',$data);
     }
     public function insert(Request $request)
@@ -40,37 +40,44 @@ class CategoryController extends Controller
        return redirect('admin/category/list')->with('success',"Category Successfully Created");
     }
     public function edit($id){
-        $data['getRecord']=Category::getSingle($id);
-        $data['header_title']='Edit Category';
-        return view('admin.category.edit',$data);
+        $category=Category::findOrFail($id);
+        return view('admin.category.edit',compact('category'));
     }
 
-    public function update($id,Request $request)
+    public function update(Request $request,$id)
     {
         request()->validate([
             'slug'=>'required|unique:category,slug,'.$id
         ]);
 
-        // $category=Category::findOrFail($id);
-        $category=Category::getSingle($id);
-        $category->name= trim($request->name);
-        $category->slug= trim($request->slug);
-        $category->status = ($request->status == '1') ? 1 : 0;
-        $category->meta_title= trim($request->meta_title);
-        $category->meta_description= trim($request->meta_description);
-        $category->meta_keywords= trim($request->meta_keywords);
-        $category->save();
+        $category=Category::findOrFail($id);
+
+        if (!$category){
+            return redirect()->route('category.list')->with('error',"No category exists for this ID");
+        }
+
+        $category->update([
+            'name' => trim($request->name),
+            'slug' => trim($request->slug),
+            'status' => ($request->status == '1') ? 1 : 0,
+            'meta_title' => trim($request->meta_title),
+            'meta_description' => trim($request->meta_description),
+            'meta_keywords' => trim($request->meta_keywords),
+
+        ]);
 
 
 
 
-       return redirect('admin/category/list')->with('success',"Category Successfully Updated");
+
+
+       return redirect()->route('category.list')->with('success',"Category Successfully Updated");
     }
-    public function delete($id){
-        $category=Category::getSingle($id);
-        // $user->is_delete=1;
+    public function delete($id)
+    {
+        $category = Category::findOrFail($id);
         $category->delete();
-
-        return redirect('admin/admin/list')->with('success',"Category Successfully Deleted");
+    
+        return redirect('admin/category/list')->with('success', "SubCategory Successfully Deleted");
     }
 }

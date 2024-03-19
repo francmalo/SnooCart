@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
+
 
 ;
 /*
@@ -43,23 +46,39 @@ Route::group(['middleware'=>'admin'],function(){
 
 
 
-    Route::get('admin/category/list',[CategoryController::class,'list']);
+    Route::get('admin/category/list',[CategoryController::class,'list'])->name('category.list');
     Route::get('admin/category/add',[CategoryController::class,'add']);
     Route::post('admin/category/add',[CategoryController::class,'insert']);
-    Route::get('admin/category/edit/{id}',[CategoryController::class,'edit']);
-    // Route::post('admin/category/edit{id}',[CategoryController::class,'update']);
-    Route::put('admin/category/edit/{id}','CategoryController@update');
-    // Route::put('admin/category/edit/{id}', [CategoryController::class, 'update']);
+    Route::get('admin/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+    Route::put('admin/category/edit{id}',[CategoryController::class,'update'])->name('category.update');
+    // Route::put('admin/category/edit/{id}','CategoryController@update');
+    // // Route::put('admin/category/edit/{id}', [CategoryController::class, 'update']);
     Route::get('admin/category/delete/{id}',[CategoryController::class,'delete']);
 
 
-    Route::get('admin/subcategory/list',[SubCategoryController::class,'list']);
-    Route::get('admin/subcategory/add',[SubCategoryController::class,'add']);
-    Route::post('admin/subcategory/add',[SubCategoryController::class,'insert']);
-    Route::get('admin/subcategory/edit/{id}',[SubCategoryController::class,'edit']);
-    Route::post('admin/subcategory/edit{id}',[SubCategoryController::class,'update']);
-    Route::get('admin/subcategory/delete/{id}',[SubCategoryController::class,'delete']);
+    Route::get('admin/subcategory/list',[SubCategoryController::class,'list'])->name('subcategory.list');
+    Route::get('admin/subcategory/add',[SubCategoryController::class,'add'])->name('subcategory.add');
+    Route::post('admin/subcategory/add',[SubCategoryController::class,'insert'])->name('subcategory.insert');
+    Route::get('admin/subcategory/edit/{id}',[SubCategoryController::class,'edit'])->name('subcategory.edit');
+    // Route::put('admin/subcategory/edit{id}',[SubCategoryController::class,'update'])->name('subcategory.update');
+    Route::patch('admin/subcategory/edit/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+    Route::get('admin/subcategory/delete/{id}',[SubCategoryController::class,'delete'])->name('subcategory.delete');
 
+    Route::get('admin/brand/list',[BrandController::class,'list'])->name('brand.list');
+    Route::get('admin/brand/add',[BrandController::class,'add'])->name('brand.add');
+    Route::post('admin/brand/add',[BrandController::class,'insert'])->name('brand.add');
+    Route::get('admin/brand/edit/{id}',[BrandController::class,'edit'])->name('brand.edit');
+    Route::put('admin/brand/edit{id}',[BrandController::class,'update'])->name('brand.update');
+    Route::get('admin/brand/delete/{id}',[BrandController::class,'delete'])->name('brand.add');
+
+
+
+    Route::get('admin/product/list',[ProductController::class,'list'])->name('product.list');
+    Route::get('admin/product/add',[ProductController::class,'add'])->name('product.add');
+    Route::post('admin/product/add',[ProductController::class,'insert'])->name('product.add');
+    Route::get('admin/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::put('admin/product/edit{id}',[ProductController::class,'update'])->name('product.update');
+    Route::get('admin/product/delete/{id}',[ProductController::class,'delete'])->name('product.add');
 
 });
 

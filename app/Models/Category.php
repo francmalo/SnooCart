@@ -10,14 +10,18 @@ class Category extends Model
     use HasFactory;
     protected $table = 'category';
 
+    protected $fillable = [
+        'name','slug','status','meta_title','meta_description','meta_keywords','created_by'
+    ];
+
     static public function getRecord(){
         return self::select('category.*','users.name as created_by_name')
                     ->join('users','users.id','=','category.created_by')
                     ->orderBy('category.id','desc')
                     ->get();
     }
-    static public function getSingle($id)
-    {
-        return self::find($id);
-    }
-}
+//     static public function getSingle($id)
+//     {
+//         return self::find($id);
+//     }
+ }

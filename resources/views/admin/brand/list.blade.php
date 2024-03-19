@@ -12,10 +12,10 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Sub Category List</h1>
+              <h1>Brand List</h1>
             </div>
             <div class="col-sm-6" style="text-align: right">
-                <a href="{{ url('admin/subcategory/add') }}" class="btn btn-primary">Add New Sub Category</a>
+                <a href="{{ url('admin/brand/add') }}" class="btn btn-primary">Add New Brand</a>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -31,7 +31,7 @@
                 @include('admin.layouts._message')
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Sub Category List</h3>
+                  <h3 class="card-title">Brand List</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
@@ -39,8 +39,7 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Sub Category Name</th>
-                        <th>Category Name</th>
+                        <th>Name</th>
                         <th>Slug</th>
                         <th>Meta Title</th>
                         <th>Meta Description</th>
@@ -57,7 +56,6 @@
                       <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
-                        <td>{{ $value->category_name }}</td>
                         <td>{{ $value->slug }}</td>
                         <td>{{ $value->meta_title }}</td>
                         <td>{{ $value->meta_description }}</td>
@@ -66,16 +64,13 @@
                         <td>{{ date('d-m-y',strtotime($value->created_by_name)) }}</td>
                         <td>{{ ($value->status == 0) ? 'Active':'Inactive' }}</td>
                         <td>
-                            <a href="{{ url('admin/subcategory/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ url('admin/subcategory/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ url('admin/brand/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ url('admin/brand/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                       @endforeach
                     </tbody>
                   </table>
-                  <div style="padding: 10px;float:right;">
-                  {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>
