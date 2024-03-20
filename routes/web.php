@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\ColorController;
 
 ;
 /*
@@ -70,6 +70,15 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/brand/edit/{id}',[BrandController::class,'edit'])->name('brand.edit');
     Route::put('admin/brand/edit{id}',[BrandController::class,'update'])->name('brand.update');
     Route::get('admin/brand/delete/{id}',[BrandController::class,'delete'])->name('brand.add');
+
+
+    Route::get('admin/color/list',[ColorController::class,'list'])->name('color.list');
+    Route::get('admin/color/add',[ColorController::class,'add'])->name('color.add');
+    Route::post('admin/color/add',[ColorController::class,'insert'])->name('color.add');
+    Route::get('admin/color/edit/{id}',[ColorController::class,'edit'])->name('color.edit');
+    Route::put('admin/color/edit{id}',[ColorController::class,'update'])->name('color.update');
+    Route::get('admin/color/delete/{id}',[ColorController::class,'delete'])->name('color.add');
+
 
 
 

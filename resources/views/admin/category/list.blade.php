@@ -61,7 +61,7 @@
                         <td>{{ $value->meta_description }}</td>
                         <td>{{ $value->meta_keywords }}</td>
                         <td>{{ $value->created_by_name }}</td>
-                        <td>{{ date('d-m-y',strtotime($value->created_by_name)) }}</td>
+                        <td>{{ date('d-m-y',strtotime($value->created_at)) }}</td>
                         <td>{{ ($value->status == 0) ? 'Active':'Inactive' }}</td>
                         <td>
                             <a href="{{ url('admin/category/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
